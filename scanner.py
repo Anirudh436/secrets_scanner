@@ -47,9 +47,10 @@ def scan_directory(path):
 
 
 def main():
-    repo_path=sys.argv[1] if len(sys.argv) > 1 else "."
-    scan_directory(repo_path)  # change path
-    output_path= os.path.join(repo_path, "output.json")
+    repo_path = sys.argv[1] if len(sys.argv) > 1 else "."
+    output_path = os.environ.get("OUTPUT_FILE", "output.json")
+
+    scan_directory(repo_path)
 
     with open(output_path, "w") as f:
         json.dump(RESULTS, f, indent=4)
